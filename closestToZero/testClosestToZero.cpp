@@ -7,7 +7,12 @@ using namespace std;
 main() {
     int arr1[2] = {-1,1};
     assert(closestToZero(arr1, 2) == 1);
+
     int arr2[3] = {-1, 3, 2};
     assert(closestToZero(arr2, 3) == -1);
+
+    int arr3[3] = {1, -3, -2};
+    assert(closestToZero(arr3, 3) == 1);
+    
     return EXIT_SUCCESS;
 }
