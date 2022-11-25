@@ -6,6 +6,6 @@ public:
         years = time;
         interestRate = interest;
         principle = amount;
-        return (principle * (1+(interestRate * years)));
+        return (float)(principle * interestRate * years)/100;
     }
 };
