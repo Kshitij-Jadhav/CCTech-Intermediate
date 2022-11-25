@@ -14,11 +14,3 @@ vector <string> generteAnagram(string word) {
     return anagrams;
 }
 
-int main() {
-    vector <string> anagrams = generteAnagram("biro");
-    cout << "anagrams : ";
-    for(auto anagram : anagrams) {
-        cout << anagram << " " ;
-    }
-    return 0;
-}
