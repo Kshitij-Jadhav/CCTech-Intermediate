@@ -1,0 +1,1 @@
+Task : make simple interest  calculator
