@@ -1,4 +1,4 @@
-Task : is given number Prime or not 
+Task : is given number Prime or not <br/>
 Tests Cases
 - test 1 = if input -1 then result false
 - test 2 = if input 0 then result false

@@ -1,4 +1,4 @@
-echo is linux command which display a line of text
+echo is linux command which display a line of text<br/>
 Test Cases
 - test 1 = for zero arguments : when no arguments then newline
 - test 2 = for one arguments : when foo then foo newline
