@@ -19,8 +19,12 @@ int main(int argc, char *argv[]) {
         vector<string> words;
         while (file >> word) {
             words.push_back(word);
-            sortStringByLength(words);
-        }  
+        }
+        sort(words.begin(), words.end(), compare);  
+        cout << "Sorted list" << endl;
+        for(auto word : words){
+            cout << word <<endl;
+        }
     }
     return EXIT_SUCCESS;
 }

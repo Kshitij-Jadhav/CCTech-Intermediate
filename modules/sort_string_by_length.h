@@ -8,6 +8,6 @@
 
 using namespace std;
 
-vector<string> sortStringByLength(vector<string>);
+bool compare(string &s1,string &s2);
 
 #endif
