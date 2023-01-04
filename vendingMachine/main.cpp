@@ -2,5 +2,6 @@
 
 int main() {
     VendingMachine m;
+    m.selectProduct();
     m.returnCoins();
 }

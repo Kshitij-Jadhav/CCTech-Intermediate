@@ -7,6 +7,7 @@
 #include <iostream>
 #include <algorithm>
 #include <iterator>
+#include <iomanip>
 
 #define money(dolar,cents) std::pair<int, int> 
 

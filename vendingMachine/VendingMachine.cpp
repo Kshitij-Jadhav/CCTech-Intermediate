@@ -46,16 +46,18 @@ void VendingMachine::exactChangeOnly() {
 }
 
 bool VendingMachine::isSoldOut(int countOfProduct) {
-    return countOfProduct > 0;
+    return countOfProduct < 0;
 }
 
 void VendingMachine::selectProduct() {
     int i = 1;
     for(auto product : products){
-        std::cout << i << "\t. " << product.first << "\t" << (product.second).first << "." << (product.second).second << std::endl;
+        float productCost = (float)(((product.second).first *100) + (product.second).second)/100;
+        std::cout << i << ". " << product.first << "  \t$" << std::setprecision(3) << productCost << std::endl;
         i++;
     }
-    std::cout << i << "\t. " << "return coins" << std::endl;
+    std::cout << i << ". " << "insert coins" << std::endl;
+    std::cout << i << ". " << "return coins" << std::endl;
     int choice;
     std::cin>> choice;
     switch (choice)
