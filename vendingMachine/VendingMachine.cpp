@@ -2,9 +2,9 @@
 
 VendingMachine::VendingMachine() {
     totalAmount   = {0, 0};
-    numberOfcola  = 5;
-    numberOfchips = 5;
-    numberOfcandy = 5;
+    numberOfCola  = 5;
+    numberOfChips = 5;
+    numberOfCandy = 5;
 }
 
 bool VendingMachine::isValidCoin(std::string insertedCoin) {
@@ -63,7 +63,7 @@ void VendingMachine::selectProduct() {
     case 1: {
         /* cola */
         if(isSoldOut(numberOfCola)){
-            std::cout << "Sold Out !" << endl;
+            std::cout << "Sold Out !" << std::endl;
             break;
         }
         break;
@@ -71,7 +71,7 @@ void VendingMachine::selectProduct() {
     case 2:{
         /* chips */
         if(isSoldOut(numberOfChips)){
-            std::cout << "Sold Out !" << endl;
+            std::cout << "Sold Out !" << std::endl;
             break;
         }
         break;
@@ -79,7 +79,7 @@ void VendingMachine::selectProduct() {
     case 3:{
         /* candy */
         if(isSoldOut(numberOfCandy)){
-            std::cout << "Sold Out !" << endl;
+            std::cout << "Sold Out !" << std::endl;
             break;
         }
         break;
