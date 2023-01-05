@@ -18,8 +18,8 @@ bool VendingMachine::isValidCoin(coin(weight,diameter) givenCoin)
     return result;
 }
 
-std::string VendingMachine::getCoin(coin(weight,diameter) givenCoin) {
-    std::string insertedCoin;
+string VendingMachine::getCoin(coin(weight,diameter) givenCoin) {
+    string insertedCoin;
     for(auto coin : validCoins) {
         if (((coin.second).first == givenCoin.first) && ((coin.second).second == givenCoin.second)){
             insertedCoin = coin.first;
@@ -29,34 +29,34 @@ std::string VendingMachine::getCoin(coin(weight,diameter) givenCoin) {
 }
 
 void VendingMachine::acceptCoin(coin(weight, diameter) givenCoin) {
-    std::string insertedCoin = getCoin();
+    string insertedCoin = getCoin(givenCoin);
     if (isValidCoin(givenCoin)) {
         int insertedAmountCents = (((coins.at(insertedCoin)).first) * 100) + ((coins.at(insertedCoin)).second);
         int totalAmountCents = ((totalAmount.first * 100) + totalAmount.second);
         totalAmountCents += insertedAmountCents; 
         totalAmount.first = totalAmountCents/100;
         totalAmount.second = totalAmountCents%100;
-        std::cout << "Inserted " << insertedCoin << std::endl;
+        cout << "Inserted " << insertedCoin << endl;
     }
     else {
         returnCoinsBox.push_back(insertedCoin);
-        std::cout << "Invalid Coin" << std::endl;
+        cout << "Invalid Coin" << endl;
     }
-    std::cout<< std::endl;
+    cout<< endl;
     printOptions();
 }
 
 // void VendingMachine::exactChangeOnly() {
-//     std::string insertedCoin;
-//     std::cout << "Exact Change Only" << std::endl;
-//     std::cin >> insertedCoin;
+//     string insertedCoin;
+//     cout << "Exact Change Only" << endl;
+//     cin >> insertedCoin;
 //     if (isValidCoin(insertedCoin)) {
 //         totalAmount.first += (coins.at(insertedCoin)).first;
 //         totalAmount.second += (coins.at(insertedCoin)).second;
 //     }
 //     else {
 //         returnCoinsBox.push_back(insertedCoin);
-//         std::cout << "Invalid Coin" << std::endl;
+//         cout << "Invalid Coin" << endl;
 //     }
 // }
 
@@ -66,23 +66,23 @@ bool VendingMachine::isSoldOut(int countOfProduct) {
 
 void VendingMachine::selectProduct() {
     int i = 1;
-    std::cout << "Amount : $" << totalAmount.first << "." << totalAmount.second << std::endl;
+    cout << "Amount : $" << totalAmount.first << "." << totalAmount.second << endl;
     for(auto product : products){
-        std::cout << i++ << ". " << product.first << "  \t$" << (product.second).first << "." << (product.second).second << std::endl;
+        cout << i++ << ". " << product.first << "  \t$" << (product.second).first << "." << (product.second).second << endl;
     }
-    std::cout << "any other key to go back" << std::endl;
+    cout << "any other key to go back" << endl;
     int choice;
-    std::cin>> choice;
+    cin>> choice;
     switch (choice)
     {
         case 1:{
             /* candy */
             if(isSoldOut(numberOfCandy)){
-                std::cout << "Sold Out !" << std::endl;
+                cout << "Sold Out !" << endl;
                 break;
             }
             if((((totalAmount).first *100) + (totalAmount).second) < (((products.at("candy")).first *100) + (products.at("candy")).second)) {
-                std::cout << "PRICE\t$" <<  (products.at("candy")).first << "." << (products.at("candy")).second << std::endl;
+                cout << "PRICE\t$" <<  (products.at("candy")).first << "." << (products.at("candy")).second << endl;
             }
             else {
                 int remAmount = (((totalAmount).first *100) + (totalAmount).second) - (((products.at("candy")).first *100) + (products.at("candy")).second);
@@ -90,40 +90,40 @@ void VendingMachine::selectProduct() {
                 totalAmount.second = remAmount%100;
                 makeChange();
                 numberOfCandy--;
-                std::cout << "THANK YOU" << std::endl;
+                cout << "THANK YOU" << endl;
             }
-            std::cout<< std::endl;
+            cout<< endl;
             printOptions();
             break;
         }
         case 2:{
             /* chips */
             if(isSoldOut(numberOfChips)){
-                std::cout << "Sold Out !" << std::endl;
+                cout << "Sold Out !" << endl;
                 break;
             }
             if((((totalAmount).first *100) + (totalAmount).second) < (((products.at("chips")).first *100) + (products.at("chips")).second)) {
-                std::cout << "PRICE\t$" <<  (products.at("chips")).first << "." << (products.at("chips")).second << std::endl;
+                cout << "PRICE\t$" <<  (products.at("chips")).first << "." << (products.at("chips")).second << endl;
             }else {
                 int remAmount = (((totalAmount).first *100) + (totalAmount).second) - (((products.at("chips")).first *100) + (products.at("chips")).second);
                 totalAmount.first = remAmount/100;
                 totalAmount.second = remAmount%100;
                 makeChange();
                 numberOfChips--;
-                std::cout << "THANK YOU" << std::endl;
+                cout << "THANK YOU" << endl;
             }
-            std::cout<< std::endl;
+            cout<< endl;
             printOptions();
              break;
         }
         case 3: {
             /* cola */
             if(isSoldOut(numberOfCola)){
-                std::cout << "Sold Out !" << std::endl;
+                cout << "Sold Out !" << endl;
                 break;
             }
             if((((totalAmount).first *100) + (totalAmount).second) < (((products.at("cola")).first *100) + (products.at("cola")).second)) {
-                std::cout << "PRICE\t$" <<  (products.at("cola")).first << "." << (products.at("cola")).second << std::endl;
+                cout << "PRICE\t$" <<  (products.at("cola")).first << "." << (products.at("cola")).second << endl;
             }
             else {
                 int remAmount = (((totalAmount).first *100) + (totalAmount).second) - (((products.at("cola")).first *100) + (products.at("cola")).second);
@@ -131,13 +131,13 @@ void VendingMachine::selectProduct() {
                 totalAmount.second = remAmount%100;
                 makeChange();
                 numberOfCola--;
-                std::cout << "THANK YOU" << std::endl;
+                cout << "THANK YOU" << endl;
             }
-            std::cout<< std::endl;
+            cout<< endl;
             printOptions();
              break;
         }
-        default: std::cout<< std::endl; printOptions();
+        default: cout<< endl; printOptions();
     }
 }
 
@@ -157,9 +157,9 @@ void VendingMachine::makeChange() {
 void VendingMachine::returnCoins() {
     makeChange();
     for (auto coin : returnCoinsBox) {
-        std::cout << coin << std::endl;
+        cout << coin << endl;
     }
-    std::cout<< std::endl;
+    cout<< endl;
     returnCoinsBox.clear();
     printOptions();
 }
@@ -167,28 +167,28 @@ void VendingMachine::returnCoins() {
 void VendingMachine::printOptions() {
     int i = 1;
     if(((totalAmount.first * 100) + totalAmount.second) <= 0) {
-        std::cout << "INSERT COIN" << std::endl;
+        cout << "INSERT COIN" << endl;
     }
     else {
-        std::cout << "Amount : $" << totalAmount.first << "." << totalAmount.second << std::endl;
+        cout << "Amount : $" << totalAmount.first << "." << totalAmount.second << endl;
     }
-    std::cout << i++ << ". " << "insert coins" << std::endl;
-    std::cout << i++ << ". " << "select product" << std::endl;
+    cout << i++ << ". " << "insert coins" << endl;
+    cout << i++ << ". " << "select product" << endl;
     for(auto product : products){
-        std::cout << "\t"<< product.first << "  \t$" << (product.second).first << "." << (product.second).second << std::endl;
+        cout << "\t"<< product.first << "  \t$" << (product.second).first << "." << (product.second).second << endl;
     }
-    std::cout << i++ << ". " << "return coins" << std::endl;
-    std::cout << "any other key to exit" << std::endl;
+    cout << i++ << ". " << "return coins" << endl;
+    cout << "any other key to exit" << endl;
     int choice;
-    std::cin >> choice;
+    cin >> choice;
     switch (choice)
     {
         case 1: {
             coin(weight, diameter) insertedCoin;
-            std::cout << "Enter weight of coin = " << std::endl;
-            std::cin >> insertedCoin.first;
-            std::cout << "Enter diameter of coin = " << std::endl;
-            std::cin >> insertedCoin.second;
+            cout << "Enter weight of coin = " << endl;
+            cin >> insertedCoin.first;
+            cout << "Enter diameter of coin = " << endl;
+            cin >> insertedCoin.second;
             acceptCoin(insertedCoin);    
             break;
         } 
@@ -212,5 +212,14 @@ void VendingMachine::test() {
         makeChange();
         assert((totalAmount.first == 0) && (totalAmount.second == 0));
     }
-    
+    {
+        stringstream redirectedStdout;
+        streambuf *originalStdout = cout.rdbuf(redirectedStdout.rdbuf());
+
+        acceptCoin({6, 24});
+
+        string actual = redirectedStdout.str();
+        string expected = "Inserted quarter";
+        assert(expected == actual);
+    }
 }

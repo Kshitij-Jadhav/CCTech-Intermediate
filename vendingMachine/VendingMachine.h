@@ -8,10 +8,13 @@
 #include <algorithm>
 #include <iterator>
 #include <iomanip>
+#include <sstream>
 #include <cassert>
 
 #define money(dolar, cents) std::pair<int, int> 
 #define coin(weight, diameter) std::pair<int, int> 
+
+using namespace std;
 
 class VendingMachine {
 private:
