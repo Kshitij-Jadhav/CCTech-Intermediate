@@ -43,7 +43,6 @@ void VendingMachine::acceptCoin(coin(weight, diameter) givenCoin) {
         cout << "Invalid Coin" << endl;
     }
     cout<< endl;
-    printOptions();
 }
 
 // void VendingMachine::exactChangeOnly() {
@@ -93,7 +92,7 @@ void VendingMachine::selectProduct() {
                 cout << "THANK YOU" << endl;
             }
             cout<< endl;
-            printOptions();
+            
             break;
         }
         case 2:{
@@ -113,7 +112,7 @@ void VendingMachine::selectProduct() {
                 cout << "THANK YOU" << endl;
             }
             cout<< endl;
-            printOptions();
+            
              break;
         }
         case 3: {
@@ -134,10 +133,10 @@ void VendingMachine::selectProduct() {
                 cout << "THANK YOU" << endl;
             }
             cout<< endl;
-            printOptions();
+            
              break;
         }
-        default: cout<< endl; printOptions();
+        default: cout<< endl; 
     }
 }
 
@@ -161,40 +160,42 @@ void VendingMachine::returnCoins() {
     }
     cout<< endl;
     returnCoinsBox.clear();
-    printOptions();
+    
 }
 
 void VendingMachine::printOptions() {
-    int i = 1;
-    if(((totalAmount.first * 100) + totalAmount.second) <= 0) {
-        cout << "INSERT COIN" << endl;
-    }
-    else {
-        cout << "Amount : $" << totalAmount.first << "." << totalAmount.second << endl;
-    }
-    cout << i++ << ". " << "insert coins" << endl;
-    cout << i++ << ". " << "select product" << endl;
-    for(auto product : products){
-        cout << "\t"<< product.first << "  \t$" << (product.second).first << "." << (product.second).second << endl;
-    }
-    cout << i++ << ". " << "return coins" << endl;
-    cout << "any other key to exit" << endl;
-    int choice;
-    cin >> choice;
-    switch (choice)
-    {
-        case 1: {
-            coin(weight, diameter) insertedCoin;
-            cout << "Enter weight of coin = " << endl;
-            cin >> insertedCoin.first;
-            cout << "Enter diameter of coin = " << endl;
-            cin >> insertedCoin.second;
-            acceptCoin(insertedCoin);    
-            break;
-        } 
-        case 2: selectProduct(); break;
-        case 3: returnCoins();   break;
-        default: {exit(EXIT_SUCCESS);}
+    while(true) {
+        int i = 1;
+        if(((totalAmount.first * 100) + totalAmount.second) <= 0) {
+            cout << "INSERT COIN" << endl;
+        }
+        else {
+            cout << "Amount : $" << totalAmount.first << "." << totalAmount.second << endl;
+        }
+        cout << i++ << ". " << "insert coins" << endl;
+        cout << i++ << ". " << "select product" << endl;
+        for(auto product : products){
+            cout << "\t"<< product.first << "  \t$" << (product.second).first << "." << (product.second).second << endl;
+        }
+        cout << i++ << ". " << "return coins" << endl;
+        cout << "any other key to exit" << endl;
+        int choice;
+        cin >> choice;
+        switch (choice)
+        {
+            case 1: {
+                coin(weight, diameter) insertedCoin;
+                cout << "Enter weight of coin = " << endl;
+                cin >> insertedCoin.first;
+                cout << "Enter diameter of coin = " << endl;
+                cin >> insertedCoin.second;
+                acceptCoin(insertedCoin);    
+                break;
+            } 
+            case 2: selectProduct(); break;
+            case 3: returnCoins();   break;
+            default: {exit(EXIT_SUCCESS);}
+        }
     }
 }
 
