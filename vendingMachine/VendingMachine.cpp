@@ -50,15 +50,14 @@ void VendingMachine::exactChangeOnly() {
 }
 
 bool VendingMachine::isSoldOut(int countOfProduct) {
-    return countOfProduct < 0;
+    return countOfProduct <= 0;
 }
 
 void VendingMachine::selectProduct() {
     int i = 1;
     std::cout << "Amount : $" << totalAmount.first << "." << totalAmount.second << std::endl;
     for(auto product : products){
-        float productCost = (float)(((product.second).first *100) + (product.second).second)/100;
-        std::cout << i++ << ". " << product.first << "  \t$" << std::setprecision(3) << productCost << std::endl;
+        std::cout << i++ << ". " << product.first << "  \t$" << (product.second).first << "." << (product.second).second << std::endl;
     }
     std::cout << "any other key to go back" << std::endl;
     int choice;
@@ -149,6 +148,7 @@ void VendingMachine::returnCoins() {
         std::cout << coin << std::endl;
     }
     std::cout<< std::endl;
+    returnCoinsBox.clear();
     printOptions();
 }
 
@@ -162,6 +162,9 @@ void VendingMachine::printOptions() {
     }
     std::cout << i++ << ". " << "insert coins" << std::endl;
     std::cout << i++ << ". " << "select product" << std::endl;
+    for(auto product : products){
+        std::cout << "\t"<< product.first << "  \t$" << (product.second).first << "." << (product.second).second << std::endl;
+    }
     std::cout << i++ << ". " << "return coins" << std::endl;
     std::cout << "any other key to exit" << std::endl;
     int choice;
@@ -171,6 +174,15 @@ void VendingMachine::printOptions() {
         case 1: acceptCoin();    break;
         case 2: selectProduct(); break;
         case 3: returnCoins();   break;
-        default: {}
+        default: {exit(EXIT_SUCCESS);}
     }
+}
+
+void VendingMachine::test() {
+    assert(isValidCoin("dime"));
+    assert(isValidCoin("quarter"));
+    assert(isValidCoin("nickel"));
+    assert(!isValidCoin("penny"));
+    assert(isSoldOut(1));
+    assert(isSoldOut(0));
 }

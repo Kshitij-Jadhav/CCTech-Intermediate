@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <iterator>
 #include <iomanip>
+#include <cassert>
 
 #define money(dolar,cents) std::pair<int, int> 
 
@@ -28,17 +29,17 @@ private:
 
     std::vector<std::string> returnCoinsBox;
 
-    
-public:
     bool isValidCoin(std::string);
     void makeChange();
     //bool canMakeChange();
     bool isSoldOut(int);
     void exactChangeOnly();
-    VendingMachine();
     void acceptCoin();
     void selectProduct();
     void returnCoins();
+public:
+    VendingMachine();
     void printOptions();
+    void test();
 };
 #endif
