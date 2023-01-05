@@ -38,7 +38,7 @@ private:
     //bool canMakeChange();
     bool isSoldOut(int);
     //void exactChangeOnly();
-    std::string VendingMachine::getCoin(coin(weight,diameter) givenCoin);
+    std::string getCoin(coin(weight,diameter) givenCoin);
     void acceptCoin(coin(weight, diameter) givenCoin);
     void selectProduct();
     void returnCoins();

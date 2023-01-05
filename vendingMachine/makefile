@@ -1,9 +1,11 @@
 .PHONY: run
 
 run:	compile
-		g++ main.cpp VendingMachine.o -o VendingMachine
+		./VendingMachine
+		
 
 compile:	main.o VendingMachine.o
+			g++ main.cpp VendingMachine.o -o VendingMachine
 
 .PHONY: test
 
