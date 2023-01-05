@@ -28,14 +28,17 @@ private:
 
     std::vector<std::string> returnCoinsBox;
 
+    
+public:
     bool isValidCoin(std::string);
     void makeChange();
+    //bool canMakeChange();
     bool isSoldOut(int);
     void exactChangeOnly();
-public:
     VendingMachine();
     void acceptCoin();
     void selectProduct();
     void returnCoins();
+    void printOptions();
 };
 #endif
