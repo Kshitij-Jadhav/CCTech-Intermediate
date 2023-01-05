@@ -6,5 +6,5 @@
 
 int main() {
     VendingMachine m;
-    m.printOptions();
+    m.test();
 }

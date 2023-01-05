@@ -183,6 +183,13 @@ void VendingMachine::test() {
     assert(isValidCoin("quarter"));
     assert(isValidCoin("nickel"));
     assert(!isValidCoin("penny"));
-    assert(isSoldOut(1));
+    assert(!isSoldOut(1));
     assert(isSoldOut(0));
+    {
+        totalAmount ={1, 55};
+        assert((totalAmount.first == 1) && (totalAmount.second == 55));
+        makeChange();
+        assert((totalAmount.first == 0) && (totalAmount.second == 0));
+    }
+    
 }
