@@ -29,14 +29,14 @@ std::string VendingMachine::getCoin(coin(weight,diameter) givenCoin) {
 }
 
 void VendingMachine::acceptCoin(coin(weight, diameter) givenCoin) {
-    std::string insertedCoin = "dime";
+    std::string insertedCoin = getCoin();
     if (isValidCoin(givenCoin)) {
         int insertedAmountCents = (((coins.at(insertedCoin)).first) * 100) + ((coins.at(insertedCoin)).second);
         int totalAmountCents = ((totalAmount.first * 100) + totalAmount.second);
         totalAmountCents += insertedAmountCents; 
         totalAmount.first = totalAmountCents/100;
         totalAmount.second = totalAmountCents%100;
-        std::cout << "Inserted" << insertedCoin << std::endl;
+        std::cout << "Inserted " << insertedCoin << std::endl;
     }
     else {
         returnCoinsBox.push_back(insertedCoin);
