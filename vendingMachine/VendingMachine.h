@@ -33,13 +33,13 @@ private:
 
     std::vector<std::string> returnCoinsBox;
 
-    bool isValidCoin(std::string);
-    bool T_isValidCoin(coin(weight, diameter));
+    bool isValidCoin(coin(weight, diameter) givenCoin);
     void makeChange();
     //bool canMakeChange();
     bool isSoldOut(int);
-    void exactChangeOnly();
-    void acceptCoin(std::string);
+    //void exactChangeOnly();
+    std::string VendingMachine::getCoin(coin(weight,diameter) givenCoin);
+    void acceptCoin(coin(weight, diameter) givenCoin);
     void selectProduct();
     void returnCoins();
 public:

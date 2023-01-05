@@ -7,17 +7,8 @@ VendingMachine::VendingMachine() {
     numberOfCandy = 5;
 }
 
-bool VendingMachine::isValidCoin(std::string insertedCoin) {
-    std::transform(insertedCoin.begin(), insertedCoin.end(), insertedCoin.begin(), ::tolower);
-    for(auto coin : coins) {
-        if (coin.first == insertedCoin){
-            return true;
-        }
-    }
-    return false;
-}
-
-bool VendingMachine::T_isValidCoin(coin(weight, diameter) givenCoin) {
+bool VendingMachine::isValidCoin(coin(weight,diameter) givenCoin)
+{
     bool result = false;
     for(auto coin : validCoins) {
         if (((coin.second).first == givenCoin.first) && ((coin.second).second == givenCoin.second)){
@@ -27,8 +18,19 @@ bool VendingMachine::T_isValidCoin(coin(weight, diameter) givenCoin) {
     return result;
 }
 
-void VendingMachine::acceptCoin(std::string insertedCoin) {
-    if (isValidCoin(insertedCoin)) {
+std::string VendingMachine::getCoin(coin(weight,diameter) givenCoin) {
+    std::string insertedCoin;
+    for(auto coin : validCoins) {
+        if (((coin.second).first == givenCoin.first) && ((coin.second).second == givenCoin.second)){
+            insertedCoin = coin.first;
+        }
+    }
+    return insertedCoin;
+}
+
+void VendingMachine::acceptCoin(coin(weight, diameter) givenCoin) {
+    std::string insertedCoin = "dime";
+    if (isValidCoin(givenCoin)) {
         int insertedAmountCents = (((coins.at(insertedCoin)).first) * 100) + ((coins.at(insertedCoin)).second);
         int totalAmountCents = ((totalAmount.first * 100) + totalAmount.second);
         totalAmountCents += insertedAmountCents; 
@@ -44,19 +46,19 @@ void VendingMachine::acceptCoin(std::string insertedCoin) {
     printOptions();
 }
 
-void VendingMachine::exactChangeOnly() {
-    std::string insertedCoin;
-    std::cout << "Exact Change Only" << std::endl;
-    std::cin >> insertedCoin;
-    if (isValidCoin(insertedCoin)) {
-        totalAmount.first += (coins.at(insertedCoin)).first;
-        totalAmount.second += (coins.at(insertedCoin)).second;
-    }
-    else {
-        returnCoinsBox.push_back(insertedCoin);
-        std::cout << "Invalid Coin" << std::endl;
-    }
-}
+// void VendingMachine::exactChangeOnly() {
+//     std::string insertedCoin;
+//     std::cout << "Exact Change Only" << std::endl;
+//     std::cin >> insertedCoin;
+//     if (isValidCoin(insertedCoin)) {
+//         totalAmount.first += (coins.at(insertedCoin)).first;
+//         totalAmount.second += (coins.at(insertedCoin)).second;
+//     }
+//     else {
+//         returnCoinsBox.push_back(insertedCoin);
+//         std::cout << "Invalid Coin" << std::endl;
+//     }
+// }
 
 bool VendingMachine::isSoldOut(int countOfProduct) {
     return countOfProduct <= 0;
@@ -139,6 +141,7 @@ void VendingMachine::selectProduct() {
     }
 }
 
+
 void VendingMachine::makeChange() {
     for (auto coin : coins) {
         int numberOfcoins = ((totalAmount.first * 100) + totalAmount.second)/(((coin.second).first * 100) + (coin.second).second); 
@@ -181,8 +184,11 @@ void VendingMachine::printOptions() {
     switch (choice)
     {
         case 1: {
-            std::string insertedCoin;
-            std::cin >> insertedCoin;
+            coin(weight, diameter) insertedCoin;
+            std::cout << "Enter weight of coin = " << std::endl;
+            std::cin >> insertedCoin.first;
+            std::cout << "Enter diameter of coin = " << std::endl;
+            std::cin >> insertedCoin.second;
             acceptCoin(insertedCoin);    
             break;
         } 
@@ -193,14 +199,10 @@ void VendingMachine::printOptions() {
 }
 
 void VendingMachine::test() {
-    assert(isValidCoin("dime"));
-    assert(isValidCoin("quarter"));
-    assert(isValidCoin("nickel"));
-    assert(!isValidCoin("penny"));
-    assert(T_isValidCoin({5, 21}));
-    assert(T_isValidCoin({2, 18}));
-    assert(T_isValidCoin({6, 24}));
-    assert(!T_isValidCoin({5, 24}));
+    assert(isValidCoin({5, 21}));
+    assert(isValidCoin({2, 18}));
+    assert(isValidCoin({6, 24}));
+    assert(!isValidCoin({5, 24}));
 
     assert(!isSoldOut(1));
     assert(isSoldOut(0));
