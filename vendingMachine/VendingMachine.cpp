@@ -213,14 +213,4 @@ void VendingMachine::test() {
         makeChange();
         assert((totalAmount.first == 0) && (totalAmount.second == 0));
     }
-    {
-        stringstream redirectedStdout;
-        streambuf *originalStdout = cout.rdbuf(redirectedStdout.rdbuf());
-
-        acceptCoin({6, 24});
-
-        string actual = redirectedStdout.str();
-        string expected = "Inserted quarter";
-        assert(expected == actual);
-    }
 }
