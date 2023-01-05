@@ -17,15 +17,24 @@ bool VendingMachine::isValidCoin(std::string insertedCoin) {
     return false;
 }
 
-void VendingMachine::acceptCoin() {
-    std::string insertedCoin;
-    std::cin >> insertedCoin;
+bool VendingMachine::T_isValidCoin(coin(weight, diameter) givenCoin) {
+    bool result = false;
+    for(auto coin : validCoins) {
+        if (((coin.second).first == givenCoin.first) && ((coin.second).second == givenCoin.second)){
+            result =  true;
+        }
+    }
+    return result;
+}
+
+void VendingMachine::acceptCoin(std::string insertedCoin) {
     if (isValidCoin(insertedCoin)) {
         int insertedAmountCents = (((coins.at(insertedCoin)).first) * 100) + ((coins.at(insertedCoin)).second);
         int totalAmountCents = ((totalAmount.first * 100) + totalAmount.second);
         totalAmountCents += insertedAmountCents; 
         totalAmount.first = totalAmountCents/100;
         totalAmount.second = totalAmountCents%100;
+        std::cout << "Inserted" << insertedCoin << std::endl;
     }
     else {
         returnCoinsBox.push_back(insertedCoin);
@@ -171,7 +180,12 @@ void VendingMachine::printOptions() {
     std::cin >> choice;
     switch (choice)
     {
-        case 1: acceptCoin();    break;
+        case 1: {
+            std::string insertedCoin;
+            std::cin >> insertedCoin;
+            acceptCoin(insertedCoin);    
+            break;
+        } 
         case 2: selectProduct(); break;
         case 3: returnCoins();   break;
         default: {exit(EXIT_SUCCESS);}
@@ -183,6 +197,11 @@ void VendingMachine::test() {
     assert(isValidCoin("quarter"));
     assert(isValidCoin("nickel"));
     assert(!isValidCoin("penny"));
+    assert(T_isValidCoin({5, 21}));
+    assert(T_isValidCoin({2, 18}));
+    assert(T_isValidCoin({6, 24}));
+    assert(!T_isValidCoin({5, 24}));
+
     assert(!isSoldOut(1));
     assert(isSoldOut(0));
     {

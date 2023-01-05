@@ -10,12 +10,16 @@
 #include <iomanip>
 #include <cassert>
 
-#define money(dolar,cents) std::pair<int, int> 
+#define money(dolar, cents) std::pair<int, int> 
+#define coin(weight, diameter) std::pair<int, int> 
 
 class VendingMachine {
 private:
-    money(dollar, cents) totalAmount;
+    const std::unordered_map<std::string, coin(weight, diameter)> validCoins = {{"nickel" , {5, 21}},
+                                                                                {"dime"   , {2, 18}}, 
+                                                                                {"quarter", {6, 24}}};
 
+    money(dollar, cents) totalAmount;
     const std::unordered_map<std::string, money(dollar, cents)> coins = {{"nickel" , {0,  5}},
                                                                          {"dime"   , {0, 10}}, 
                                                                          {"quarter", {0, 25}}};
@@ -30,11 +34,12 @@ private:
     std::vector<std::string> returnCoinsBox;
 
     bool isValidCoin(std::string);
+    bool T_isValidCoin(coin(weight, diameter));
     void makeChange();
     //bool canMakeChange();
     bool isSoldOut(int);
     void exactChangeOnly();
-    void acceptCoin();
+    void acceptCoin(std::string);
     void selectProduct();
     void returnCoins();
 public:

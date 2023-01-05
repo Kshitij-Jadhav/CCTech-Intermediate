@@ -8,9 +8,10 @@ compile:	main.o VendingMachine.o
 .PHONY: test
 
 test:	runTest
-		g++ test.cpp VendingMachine.o -o test
+		./test
 
 runTest:	test.o VendingMachine.o
+			g++ test.cpp VendingMachine.o -o test
 
 .PHONY: clean
 ## clean:	Removes all generated files.
