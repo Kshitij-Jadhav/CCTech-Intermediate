@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
+#include <algorithm>
 
 using namespace std;
 
@@ -15,17 +16,29 @@ int main() {
         CurrencyConverter* inputCurrency;
         int inputCurrencyIndex;
         {
-            cout << "Select the input currency from the list" << endl;
-            {
-                int i = 1;
-                for (auto currencyName : inputCurrencyNames) {
-                    cout << i++ << "." << currencyName << endl;
+            
+            while(1) {
+                cout << "Select the input currency from the list" << endl;
+                {
+                    int i = 1;
+                    for (auto currencyName : inputCurrencyNames) {
+                        cout << i++ << "." << currencyName << endl;
+                    }
+                }
+                cout << ".\n.\n.\n>";
+                string temp;
+                cin >> temp;
+                if(all_of(temp.begin(), temp.end(), ::isdigit) && (stoi(temp) >= 0 && stoi(temp) < inputCurrencies.size())) {
+                    inputCurrencyIndex = stoi(temp);
+                    break;
+                }
+                if(all_of(temp.begin(), temp.end(), ::isdigit)){
+                    cout << "Please enter a valid number" << endl;
+                }
+                else if(stoi(temp) >= 0 && stoi(temp) < inputCurrencies.size()) {
+                    cout << "The number is out of range" << endl;
                 }
             }
-            cout << ".\n.\n.\n>";
-            
-            cin >> inputCurrencyIndex;
-            //error handlining *is not a number *number outside the range *is not a valid number
             inputCurrency = inputCurrencies.at(inputCurrencyIndex - 1);
         }
         vector<CurrencyConverter*> outputCurrencies;
