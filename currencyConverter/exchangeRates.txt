@@ -1,0 +1,3 @@
+USD = 1.19 GBP
+USD = 98.40 INR
+USD = 1.13 EUR
