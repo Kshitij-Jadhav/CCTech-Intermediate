@@ -55,7 +55,7 @@ int main() {
         }
         CurrencyConverter* outputCurrency;
         int outputCurrencyIndex;
-        {
+        while (1) {
             cout << "Select the output currency from the list" << endl;
             
             {
@@ -65,8 +65,18 @@ int main() {
                 }
             }
             cout << ".\n.\n>";
-            
-            cin >> outputCurrencyIndex;
+            string temp;
+                cin >> temp;
+                if(all_of(temp.begin(), temp.end(), ::isdigit) && (stoi(temp) >= 0 && stoi(temp) < inputCurrencies.size())) {
+                    outputCurrencyIndex = stoi(temp);
+                    break;
+                }
+                if(all_of(temp.begin(), temp.end(), ::isdigit)){
+                    cout << "Please enter a valid number" << endl;
+                }
+                else if(stoi(temp) >= 0 && stoi(temp) < inputCurrencies.size()) {
+                    cout << "The number is out of range" << endl;
+                }
             //error handlining *is not a number *number outside the range *is not a valid number
             outputCurrency = outputCurrencies.at(outputCurrencyIndex - 1);
         }
